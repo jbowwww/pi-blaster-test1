@@ -1,4 +1,4 @@
-const piblaster = require('@jbowwww/pi-blaster.js');
+const piblaster = require('pi-blaster.js');
 const delay = ms => new Promise((resolve, reject) => setTimeout(resolve, ms)); //require('p-delay');		
 
 (async function main() {
@@ -14,7 +14,10 @@ try {
 	await delay(1000);
 
 	for (; p <= 1 && p >= 0; p += (dir === 0 ? +0.05 : -0.05)) {
+		piblaster.setPwm(17, p);
+		piblaster.setPwm(22, p);	
 		piblaster.setPwm(27, p);
+		delay(1);
 	}
 
 	await delay(1000);
